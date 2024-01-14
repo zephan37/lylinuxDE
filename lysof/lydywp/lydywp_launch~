@@ -1,0 +1,12 @@
+#!/bin/bash
+LocalDir=$(cd "$(dirname $0)";pwd)
+while true
+do
+	image_path=$($LocalDir/lydywp $1 $2 $3)
+	image_path=$(echo $image_path)
+	image_path=$image_path".jpg";
+	
+	feh --bg-fill $image_path
+	#gsettings set org.mate.background picture-filename $image_path
+	sleep 600
+done
