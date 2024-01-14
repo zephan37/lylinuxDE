@@ -1,0 +1,95 @@
+#!/bin/bash
+#0, you must install xorg first
+#echo "you must install xorg first, are you ready?"
+
+#1, install fonts
+sudo cp -a $HOME/.config/lybspwm/fonts/* /usr/share/fonts/
+if [ $? -ne 0 ]; then
+	echo "install fonts failed\n"
+	exit 2
+else
+	echo "install fonts succeed\n"
+fi
+
+#2, install alacritty 
+sudo pacman -S --noconfirm alacritty rofi lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+if [ $? -ne 0 ]; then
+	echo "install alacritty and rofi failed\n"
+	exit 2
+else
+	echo "install alacritty succeed\n"
+fi
+
+#3, install bspwm
+sudo pacman -S --noconfirm bspwm sxhkd && sh -c "echo -e \"[Desktop Entry]\nName=bspwm\nComment=Binary space partitioning window manager\nExec=bspwm -c $HOME/.config/lybspwm/bspwm/bspwmrc\nType=Application\" > $HOME/.config/lybspwm/bspwm/bspwm.desktop" && sudo cp $HOME/.config/lybspwm/bspwm/bspwm.desktop /usr/share/xsessions/bspwm.desktop
+if [ $? -ne 0 ]; then
+	echo "install bspwm failed\n"
+	exit 2
+else
+	echo "install bspwm succeed\n"
+fi
+
+#4, install xbindkeys
+sudo pacman -S --noconfirm xbindkeys
+if [ $? -ne 0 ]; then
+	echo "install xbindkeys failed\n"
+	exit 2
+else
+	echo "install xbindkeys succeed\n"
+fi
+
+#5, install polybar
+sudo pacman -S --noconfirm polybar xfce4-screenshooter stalonetray light fsearch blueman pulseaudio osmo && sudo ln -svf $HOME/.config/lybspwm/stop_launch /usr/bin/
+if [ $? -ne 0 ]; then
+	echo "install polybar failed\n"
+	exit 2
+else
+	echo "install polybar succeed\n"
+fi
+
+#6, fcitx
+sudo pacman -S --noconfirm fcitx fcitx-configtool fcitx-googlepinyin && cp $HOME/.config/lybspwm/fcitx/.xprofile $HOME/
+if [ $? -ne 0 ]; then
+	echo "install fcitx failed\n"
+	exit 2
+else
+	echo "install fcitx succeed\n"
+fi
+
+#7, i3lock
+sudo pacman -S --noconfirm  xautolock i3lock
+if [ $? -ne 0 ]; then
+	echo "install i3lock failed\n"
+	exit 2
+else
+	echo "install i3lock succeed\n"
+fi
+
+#8, wallpaper
+sudo pacman -S --noconfirm feh
+if [ $? -ne 0 ]; then
+	echo "install feh failed\n"
+	exit 2
+else
+	echo "install feh succeed\n"
+fi
+
+#9, give permission to auto update script
+sudo sh -c "echo \"$USER ALL=NOPASSWD: $HOME/.config/lybspwm/autoupdate/lyauto_update_system, /usr/sbin/shutdown, /usr/bin/killall, /usr/sbin/reboot\" > /etc/sudoers.d/09_lybspwm"
+if [ $? -ne 0 ]; then
+	echo "permission set failed\n"
+	exit 2
+else
+	echo "permission set succeed\n"
+fi
+
+#9, picom
+sudo pacman -S --noconfirm picom
+if [ $? -ne 0 ]; then
+	echo "install picom failed\n"
+	exit 2
+else
+	echo "finally, install succeed\n"
+	echo "you need to edit module \"wlan, eth, battery\" in \"$HOME/.config/lybspwm/polybar/config_white|config_black.ini\" and edit geometry in  \"$HOME/.config/lybspwm/stalonetray/stalonetrayrc\" to adapt you device"
+fi
+

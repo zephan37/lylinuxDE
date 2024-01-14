@@ -1,0 +1,8 @@
+#!/bin/bash
+LocalDir=$(cd "$(dirname $0)";pwd)
+pidof -x stalonetray
+if [ $? == '0' ]; then
+	killall stalonetray
+else
+	stalonetray -c $HOME/.config/lybspwm/stalonetray/stalonetrayrc
+fi

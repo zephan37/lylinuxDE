@@ -1,0 +1,17 @@
+decorations none
+transparent true
+dockapp_mode none
+geometry 8x1+1355+3
+max_geometry 5x1-325-10
+#background "#FFFFFF"
+#parent_bg true
+grow_gravity E
+icon_gravity E
+icon_size 24
+kludges force_icons_size
+sticky true
+#window_strut none
+#window_type desktop
+window_layer top
+#no_shrink false
+skip_taskbar true

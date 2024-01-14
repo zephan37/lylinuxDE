@@ -1,0 +1,35 @@
+#!/bin/bash
+#1, auto update
+#sudo killall lyauto_update_system
+
+#2, xbindkeys
+killall xbindkeys
+
+#3, polybar
+killall polybar_launch
+killall polybar
+
+#4, fcitx
+killall fcitx
+
+#5, i3lock
+killall xautolock
+killall i3lock
+
+#6, xinput
+killall ly_xinput
+
+#7, wallpaper
+killall lydywp_launch
+killall lydywp
+killall feh
+
+#8, xmodmap
+killall ly_xmodmap
+killall xmodmap
+
+#9, picom
+killall picom
+
+#10, bspwm
+killall bspwm

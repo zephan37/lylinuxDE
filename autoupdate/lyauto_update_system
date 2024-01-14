@@ -1,0 +1,9 @@
+#!/bin/bash
+while true;do
+	ping -c 10 www.baidu.com
+	if [ $? == '0' ];then
+		pacman -Syu --noconfirm
+		break
+	fi
+	sleep 5
+done
