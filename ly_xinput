@@ -1,0 +1,6 @@
+#!/bin/sh
+sleep 5
+xinput set-prop "Synaptics TM3136-020" "libinput Tapping Enabled" 1
+xinput set-prop "Synaptics TM3136-020" "libinput Natural Scrolling Enabled" 1
+xinput set-prop "Synaptics TM3136-020" "libinput Accel Speed" 0.3
+exit
