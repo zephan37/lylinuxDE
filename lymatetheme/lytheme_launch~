@@ -1,0 +1,27 @@
+#!/bin/bash
+LocalDir=$(cd "$(dirname $0)";pwd)
+
+#gtk theme
+gtk_light="Breeze"
+gtk_dark="Breeze-Dark"
+
+#icon theme
+icon_light="Nordzy-cyan"
+icon_dark="Nordzy-cyan-dark"
+
+while true
+do
+	gtk_theme=$($LocalDir/lytheme $1 $2 $gtk_light $gtk_dark)
+	gtk_theme=$(echo $gtk_theme)
+	gtk_cmd="gsettings set org.mate.interface gtk-theme "\"$gtk_theme\";
+
+	icon_theme=$($LocalDir/lytheme $1 $2 $icon_light $icon_dark)
+	icon_theme=$(echo $icon_theme)
+	icon_cmd="gsettings set org.mate.interface icon-theme "\"$icon_theme\";
+
+
+	$gtk_cmd
+	$icon_cmd
+	
+	sleep 600
+done
